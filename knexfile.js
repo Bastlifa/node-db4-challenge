@@ -8,6 +8,10 @@ module.exports = {
     connection: {
       filename: './data/recipies.db3'
     },
+    migrations: 
+    {
+      directory: './data/migrations'
+    },
     pool: 
     {
       afterCreate: (conn, done) => 
