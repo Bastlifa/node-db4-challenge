@@ -15,6 +15,10 @@ exports.up = function(knex) {
         {
             tbl.increments()
             tbl.string('step').notNullable()
+            tbl 
+                .integer('step_number')
+                .unsigned()
+                .notNullable()
         })
         .createTable('recipies_ingredients', tbl =>
         {
@@ -33,6 +37,8 @@ exports.up = function(knex) {
                 .onDelete('CASCADE')
                 .onUpdate('CASCADE')
             tbl.float('quantity')
+
+            tbl.primary(['recipe_id', 'ingredient_id'])
             })
         .createTable('recipies_steps', tbl =>
         {
@@ -50,6 +56,8 @@ exports.up = function(knex) {
                 .inTable('steps')
                 .onDelete('CASCADE')
                 .onUpdate('CASCADE')
+            
+            tbl.primary(['recipe_id', 'step_id'])
         })
 };
 
